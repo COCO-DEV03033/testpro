@@ -1,0 +1,138 @@
+var pathname = window.location.pathname;
+var page = pathname.split("/").pop();
+//alert(pathname);
+//alert(page);
+switch (page) {
+    case "":
+        $('.nav-link').removeClass('active').addClass('inactive');
+        $('.dropdown-item').removeClass('active').addClass('inactive');
+        $('#home').addClass('active');
+        document.getElementById("homebtni").src="./images/homeas.png";
+      //  alert(home);
+        break;
+        case "index":
+        $('.nav-link').removeClass('active').addClass('inactive');
+        $('.dropdown-item').removeClass('active').addClass('inactive');
+        $('#home').addClass('active');
+        document.getElementById("homebtni").src="./images/homeas.png";
+      //  alert(home);
+        break;
+    case "gallery":
+        $('.nav-link').removeClass('active').addClass('inactive');
+        $('.dropdown-item').removeClass('active').addClass('inactive');
+        $('#gallery').addClass('active');
+        break;
+    case "towing":
+        $('.nav-link').removeClass('active').addClass('inactive');
+        $('.dropdown-item').removeClass('active').addClass('inactive');
+        $('#service').addClass('active');
+        $('#towing').addClass('active');
+        break;
+    case "collision_repair":
+        $('.nav-link').removeClass('active').addClass('inactive');
+        $('.dropdown-item').removeClass('active').addClass('inactive');
+        $('#service').addClass('active');
+        $('#collision_repair').addClass('active');
+      //  alert(pathname);
+        break;
+    case "fleet_services":
+        $('.nav-link').removeClass('active').addClass('inactive');
+        $('.dropdown-item').removeClass('active').addClass('inactive');
+        $('#service').addClass('active');
+        $('#fleet_services').addClass('active');
+        break;
+    case "auto_glass":
+        $('.nav-link').removeClass('active').addClass('inactive');
+        $('.dropdown-item').removeClass('active').addClass('inactive');
+        $('#service').addClass('active');
+        $('#auto_glass').addClass('active');
+        break;
+    case "adas":
+        $('.nav-link').removeClass('active').addClass('inactive');
+        $('.dropdown-item').removeClass('active').addClass('inactive');
+        $('#service').addClass('active');
+        $('#adas').addClass('active');
+      //  alert("home");
+        break;
+    case "repair_shop":
+        $('.nav-link').removeClass('active').addClass('inactive');
+        $('.dropdown-item').removeClass('active').addClass('inactive');
+        $('#repair_shop').addClass('active');
+        break;
+    case "inventory":
+        $('.nav-link').removeClass('active').addClass('inactive');
+        $('.dropdown-item').removeClass('active').addClass('inactive');
+        $('#inventory').addClass('active');
+        break;
+    case "finance":
+        $('.nav-link').removeClass('active').addClass('inactive');
+        $('.dropdown-item').removeClass('active').addClass('inactive');
+        $('#finance').addClass('active');
+        break;
+    case "buyer_faq":
+        $('.nav-link').removeClass('active').addClass('inactive');
+        $('.dropdown-item').removeClass('active').addClass('inactive');
+        $('#about').addClass('active');
+        $('#buyer_faq').addClass('active');
+        break;
+        case "contact":
+        $('.nav-link').removeClass('active').addClass('inactive');
+        $('.dropdown-item').removeClass('active').addClass('inactive');
+        $('#about').addClass('active');
+        $('#contact').addClass('active');
+        break;
+    case "inventory_car":
+        $('.nav-link').removeClass('active').addClass('inactive');
+        $('.dropdown-item').removeClass('active').addClass('inactive');
+        $('#inventory').addClass('active');
+        break;
+  
+}
+
+$(document).ready(function(){       
+   var scroll_start = 0;
+   var startchange = $('.topbar');
+   var offset = startchange.offset();
+    if (startchange.length){
+   $(document).scroll(function() { 
+      scroll_start = $(this).scrollTop();
+      if(scroll_start > offset.top) {
+          $(".tz-header").css('background-color', '#fff');
+          $(".tz-header").css('top', '0px');
+        //  $(".tz-header").css('position', 'sticky');
+       } else {
+          $('.tz-header').css('background-color', 'transparent');
+          $(".tz-header").css('top', '60px');
+        //  $(".tz-header").css('position', 'relative');
+       }
+   });
+    }
+});
+
+
+
+
+/*
+$.getScript("https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js", function(){
+
+});
+*/
+//var script = document.createElement('script');
+//script.src = '//ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js';
+//script.type = 'text/javascript';
+//document.getElementsByTagName('body')[0].appendChild(script);
+
+function loadFunction(){
+	   // document.getElementsByClassName("se-pre-con").style.display = "inherit";
+	    $('.se-pre-con').css('display','inherit');
+	   // $(".se-pre-con").fadeOut("slow");
+	  //  alert("The form was submitted");
+	}
+//paste this code under the head tag or in a separate js file.
+	// Wait for window load
+//	$(window).load(function() {
+		// Animate loader off screen
+//		$(".se-pre-con").fadeOut("slow");
+//	});
+	
+	

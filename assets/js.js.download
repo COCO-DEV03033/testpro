@@ -1,0 +1,196 @@
+$(document).ready(function(){
+	
+	setInterval(function(){
+		$("input[type=password]").attr("minlength",'8');
+		$("input[name=name]").attr("minlength",'4');
+		$("input[type=email]").attr("minlength",'10');
+		$("input[name=address]").attr("minlength",'10');
+		if(localStorage.length>0)
+		{
+			$(".checkout").fadeIn(500);
+		}
+		else
+		{
+			$(".checkout").fadeOut(500);
+		}
+	},100);
+		//--- Slider ---//
+		
+		/*$(".sideBar").hide();
+		$(".sideBar").slideToggle(3000);*/
+		
+		$("#sImg2").hide();
+		$("#sImg3").hide();
+		$("#sImg4").hide();
+		$("#sImg5").hide();
+	
+		$("#addQuantityPP").click(function(){
+			var value = parseInt($("#quantityPP").val());
+			$("#quantityPP").val(value+=1);
+		});
+	
+		$(".wrapEachItem").click(function(){
+			$(".wrapEachItem").css("background","none");
+			$(".wrapEachItem").css("box-shadow","inset 10vw 10vw 20vw hsla(359,100%,0%,0)");
+			$(this).css("background","hsla(359,100%,100%,0.2)");
+			$(this).css("box-shadow","inset 10vw 10vw 20vw hsla(359,100%,0%,0.2)");
+		});
+		
+		$("#delQuantityPP").click(function(){
+			var value = parseInt($("#quantityPP").val())-1;
+			if(value>0)
+			{
+				$("#quantityPP").val(value);
+			}
+		});
+	
+		$("input[id='addPrd']").click(function(){
+				var value = parseInt($("input[id='quanSvgCart']").val());
+				$("input[id='quanSvgCart']").val(value+=1);
+			});
+
+		$("input[id='subPrd']").click(function(){
+			var value = parseInt($("input[id='quanSvgCart']").val())-1;
+			if(value>0)
+			{
+				$("input[id='quanSvgCart']").val(value);
+			}
+		});
+	
+		$("#pImgSlider2").hide();
+		$("#pImgSlider3").hide();
+	
+		$(".fixedMenuBtn,.hider2").click(function(){
+			 $(".menuBarFixed").animate({
+                width: "toggle"
+            });
+			$(".cartFixed").fadeOut(1000);
+		});
+	
+		$("#cart,.hider").click(function(){
+			 $(".cartFixed").animate({
+                width: "toggle"
+            });
+			$(".menuBarFixed").fadeOut(1000);
+		});
+		
+		$("#addToCart").click(function(){
+			$(".cartFixed").fadeIn(1000);
+		});
+		
+		$(".slider,.product,.menu,.loginForm,.registerForm, .contactLine,.wrapFooter").click(function(){
+			$(".menuBarFixed").fadeOut(1000);
+		});
+	
+		$(".slider,.menu,.product,.loginForm,.registerForm,.wrapFooter").click(function(){
+			$(".menuBarFixed").fadeOut(1000);
+			$(".cartFixed").fadeOut(1000);
+		});
+		
+	
+	/*
+		$(".slideLeft").click(function(){
+			t=1;
+		});*/
+	
+		var t=0;
+		var g=0;
+	
+		var i=0;
+		
+		var s2,s3,s4,s5;
+		
+		var a=setInterval(function(){ 
+			if(i==0 && t==0)
+			{	
+				$("#sImg1").fadeOut(1000,function(){
+					i=1;
+					$("#sImg2").fadeIn(1000);
+						g=1;
+					s2=setTimeout(function(){
+						$("#sImg2").fadeOut(1000,function(){
+							$("#sImg3").fadeIn(1000);
+							g=2;
+							s3=setTimeout(function(){
+								$("#sImg3").fadeOut(1000,function(){
+									$("#sImg4").fadeIn(1000);
+									g=3;
+									s4=setTimeout(function(){
+										$("#sImg4").fadeOut(1000,function(){
+											$("#sImg5").fadeIn(1000);
+											g=4;
+											 s5=setTimeout(function(){
+												$("#sImg5").fadeOut(1000,function(){
+													$("#sImg1").fadeIn(1000);
+													i=0;
+													g=5;
+												});
+											},4000);
+										});
+									},4000);
+								});
+							},4000);
+						});
+					},4000);
+				});
+			}
+			else
+			{
+				/*if(t==1)
+				{
+					if(g<5 && g>1)
+					{
+						$("#sImg1,#sImg2,#sImg3,#sImg4,#sImg5").fadeOut(100);
+						var fg=g-1;
+						$("#sImg"+g).fadeOut(200,function(){
+							$("#sImg"+fg).fadeIn(200,function(){
+								$("#sImg1,#sImg2,#sImg3,#sImg4,#sImg5").fadeOut(100,function(){
+									t=0;
+								});
+							});
+						});
+					}
+					if(g==5)
+					{
+						$("#sImg1,#sImg2,#sImg3,#sImg4,#sImg5").fadeOut(100);
+						var fg=g-1;
+						$("#sImg5").fadeOut(200,function(){
+							$("#sImg1").fadeIn(100,function(){
+								$("#sImg1,#sImg2,#sImg3,#sImg4,#sImg5").fadeOut(100,function(){
+									t=0;
+								});
+							});
+						});
+					}
+					if(g==1)
+					{
+						$("#sImg1,#sImg2,#sImg3,#sImg4,#sImg5").fadeOut(100);
+						var fg=g-1;
+						$("#sImg1").fadeOut(200,function(){
+							$("#sImg5").fadeIn(100,function(){
+								$("#sImg1,#sImg2,#sImg3,#sImg4,#sImg5").fadeOut(100,function(){
+									t=0;
+								});
+							});
+						});
+					}
+				}*/
+			}
+		},2000);
+		
+		/*setTimeout(function(){clearInterval(a);},6000);
+		
+		$("#sImg1").hover(function(){
+			clearTimeout(s2,s3,s4,s5);
+			clearInterval(a);
+		});
+		$("#sImg2").hover(function(){
+			clearTimeout(s3,s4,s5);
+			clearInterval(a);
+		});*/
+		
+		/*$(".contactLine").css("width","100%");
+		$(".contactLine").css("border-radius","0");
+		$(".menu").css("width","69%");
+		$(".menu").css("border-radius","1vw 0vw 0vw 1vw");*/
+	});

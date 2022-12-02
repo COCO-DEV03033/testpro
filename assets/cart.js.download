@@ -1,0 +1,111 @@
+//--cart--//
+// Dynamically populate the table with shopping list items.
+//Step below can be done via PHP and AJAX, too.
+	//localStorage.clear();
+
+function doShowAll() {
+	
+		var key = "";
+		var list = "";
+		var i = 0;
+		//For a more advanced feature, you can set a cap on max items in the cart.
+		for (i = 0; i <= localStorage.length-1; i++) {
+			key = localStorage.key(i);
+			
+			//alert(localStorage.getItem(key));
+			
+	//alert(JSON.parse(localStorage.getItem(key)).pr);
+			list +='<div class="wrapEachItem"><a href="/Product" class="itemName"><label class="hoverUnderlines">'+key.split("-")[0]+'</label><span>Size: '+ JSON.parse(localStorage.getItem(key)).size+' | Color: </span><label style="background:'+JSON.parse(localStorage.getItem(key)).color+';" class="colorSpan"></label><p style="background:hsla(359,100%,100%,0.1); padding:2px; text-align:center">Amount: '+ JSON.parse(localStorage.getItem(key)).pr+ ' x '+JSON.parse(localStorage.getItem(key)).quantity+' = Rs. '+JSON.parse(localStorage.getItem(key)).pr*JSON.parse(localStorage.getItem(key)).quantity+'/-</p></a><p class="itemInfo"><svg class="quantitySvg" viewBox="0 0 20 20"><path d="M14.613,10c0,0.23-0.188,0.419-0.419,0.419H10.42v3.774c0,0.23-0.189,0.42-0.42,0.42s-0.419-0.189-0.419-0.42v-3.774H5.806c-0.23,0-0.419-0.189-0.419-0.419s0.189-0.419,0.419-0.419h3.775V5.806c0-0.23,0.189-0.419,0.419-0.419s0.42,0.189,0.42,0.419v3.775h3.774C14.425,9.581,14.613,9.77,14.613,10 M17.969,10c0,4.401-3.567,7.969-7.969,7.969c-4.402,0-7.969-3.567-7.969-7.969c0-4.402,3.567-7.969,7.969-7.969C14.401,2.031,17.969,5.598,17.969,10 M17.13,10c0-3.932-3.198-7.13-7.13-7.13S2.87,6.068,2.87,10c0,3.933,3.198,7.13,7.13,7.13S17.13,13.933,17.13,10"></path></svg><input type="number" name="quantity[]" value="'+JSON.parse(localStorage.getItem(key)).quantity+'"><svg class="quantitySvg" viewBox="0 0 20 20"><path d="M14.776,10c0,0.239-0.195,0.434-0.435,0.434H5.658c-0.239,0-0.434-0.195-0.434-0.434s0.195-0.434,0.434-0.434h8.684C14.581,9.566,14.776,9.762,14.776,10 M18.25,10c0,4.558-3.693,8.25-8.25,8.25c-4.557,0-8.25-3.691-8.25-8.25c0-4.557,3.693-8.25,8.25-8.25C14.557,1.75,18.25,5.443,18.25,10 M17.382,10c0-4.071-3.312-7.381-7.382-7.381C5.929,2.619,2.619,5.93,2.619,10c0,4.07,3.311,7.382,7.381,7.382C14.07,17.383,17.382,14.07,17.382,10"></path></svg><svg class="svg-iconIcon deleteProduct" viewBox="0 0 20 20"><path d="M17.114,3.923h-4.589V2.427c0-0.252-0.207-0.459-0.46-0.459H7.935c-0.252,0-0.459,0.207-0.459,0.459v1.496h-4.59c-0.252,0-0.459,0.205-0.459,0.459c0,0.252,0.207,0.459,0.459,0.459h1.51v12.732c0,0.252,0.207,0.459,0.459,0.459h10.29c0.254,0,0.459-0.207,0.459-0.459V4.841h1.511c0.252,0,0.459-0.207,0.459-0.459C17.573,4.127,17.366,3.923,17.114,3.923M8.394,2.886h3.214v0.918H8.394V2.886z M14.686,17.114H5.314V4.841h9.372V17.114z M12.525,7.306v7.344c0,0.252-0.207,0.459-0.46,0.459s-0.458-0.207-0.458-0.459V7.306c0-0.254,0.205-0.459,0.458-0.459S12.525,7.051,12.525,7.306M8.394,7.306v7.344c0,0.252-0.207,0.459-0.459,0.459s-0.459-0.207-0.459-0.459V7.306c0-0.254,0.207-0.459,0.459-0.459S8.394,7.051,8.394,7.306"></path></svg></p></div>' ;
+
+		}
+		//If no item exists in the cart.
+		if (list == "<tr><th>Item</th><th>Value</th></tr>\n") {
+			list += "<tr><td><i>empty</i></td>\n<td><i>empty</i></td></tr>\n";
+		}
+		//Bind the data to HTML table.
+		//You can use jQuery, too.
+		document.getElementById('list').innerHTML = list;
+}
+
+function SaveItem() {
+	
+	var names = $("input[name='name']").val()+"-"+$("input[name='color']:checked").val()+$("input[name='size']:checked").val();
+
+	var keys = localStorage.key($("input[name='name']").val()+"-"+$("input[name='color']:checked").val()+$("input[name='size']:checked").val());
+
+	/*if(keys!=null)
+	{
+		ModifyItem();
+	}
+	else
+	{*/
+		var getData1 = 
+		{
+			"quantity":$("#quantityPP").val(),
+			"color": $("input[name='color']:checked").val(),
+			"size": $("input[name='size']:checked").val(),
+			"pr": $("input[name='pricePPcart']").val(),
+			"discount": $("input[name='discountPPcart']").val(),
+			"pid": $("input[name='pid']").val(),
+			"cid": $("input[name='cid']").val(),
+			"sid": $("input[name='sid']").val(),
+		};
+		localStorage.setItem(names, JSON.stringify(getData1 ));
+		doShowAll();
+	//}
+
+		/*var getData = 
+		{
+			"quantity":$("#quantityPP").val(),
+			"color": $("input[name='color']:checked").val(),
+			"size": $("input[name='size']:checked").val(),
+		};
+		localStorage.setItem(name, JSON.stringify(getData ));
+		doShowAll();*/
+}
+
+var counter = 0;
+
+function addSize(i){
+	id=i;
+		var child = '<div id="'+id+'sizeap'+counter+'" style="display:none;"><div class="row"><div class="col"><label>Size:</label><input type="text" name="'+id+'size[]" placeholder="Size..."></div><div class="col"><label>Quantity:</label><input type="number" name="'+id+'quantity[]" placeholder="Quantity..."></div></div><div class="row"><div class="col"><label>Price:</label><input type="number" name="'+id+'price[]" placeholder="Price..."></div><div class="col"><label>Discount:</label><input type="number" name="'+id+'discount[]" placeholder="Discount..."></div><span style="color:#ff0000; cursor:pointer;float:right;" onClick="$(\'#'+id+'sizeap'+counter+'\').fadeOut(500,function(){$(\'#'+id+'sizeap'+counter+'\').remove();})">Remove</span></div></div>';
+
+		$("#"+id+"sizesAP").append(child);
+
+		$('#'+id+'sizeap'+counter).fadeIn(500);
+
+		(counter++);
+}
+
+function ModifyItem() {
+	var namesy = $("input[name='name']").val()+"-"+$("input[name='color']:checked").val()+$("input[name='size']:checked").val();
+
+		var keysy = localStorage.key($("input[name='name']").val()+"-"+$("input[name='color']:checked").val()+$("input[name='size']:checked").val());
+
+		if(keysy!=null)
+		{
+			q1s = $("#quantityPP").val();
+			q2s = JSON.parse(localStorage.getItem(keysy)).quantity;
+			//alert(q2);
+
+			qfinals = +q1s + +q2s;
+			var getDatass = 
+			{
+				"quantity":qfinals,
+				"color": $("input[name='color']:checked").val(),
+				"size": $("input[name='size']:checked").val(),
+				"pr": $("input[name='pricePPcart']").val(),
+				"discount": $("input[name='discountPPcart']").val(),
+				"pid": $("input[name='pid']").val(),
+				"cid": $("input[name='cid']").val(),
+				"sid": $("input[name='sid']").val(),
+			};
+
+			localStorage.setItem(namesy, JSON.stringify(getDatass ));
+			doShowAll();
+		}
+
+	doShowAll();
+}
+
+doShowAll();
